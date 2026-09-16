@@ -4,10 +4,10 @@ matplotlib.use("TkAgg")
 
 from matplotlib import pyplot
 
-from perceptron.geometry import square_bounds
-from perceptron.graphics.chart import new_axes, new_figure, plot_classifier_probability_heatmap, plot_training_data
-from perceptron.model.backprop_classifier_network import BackpropClassifierNetwork
-from perceptron.train import random_alternating_training_data, train_linear_classifier_network
+from indrajala_ml.geometry import square_bounds
+from indrajala_ml.graphics.chart import new_axes, new_figure, plot_classifier_probability_heatmap, plot_training_data
+from indrajala_ml.model.backprop_classifier_network import BackpropClassifierNetwork
+from indrajala_ml.train import random_alternating_training_data, train_linear_classifier_network
 
 
 class CircleTarget:

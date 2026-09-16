@@ -4,11 +4,11 @@ matplotlib.use("TkAgg")
 
 from matplotlib import pyplot
 
-from perceptron.evaluate import class_balanced_disagreement_rate
-from perceptron.geometry import square_bounds
-from perceptron.graphics.chart import new_axes, new_figure, plot_linear_classifier_network, plot_training_data
-from perceptron.model.linear_classifier_network import LinearClassifierNetwork
-from perceptron.train import random_alternating_training_data, train_linear_classifier_network
+from indrajala_ml.evaluate import class_balanced_disagreement_rate
+from indrajala_ml.geometry import square_bounds
+from indrajala_ml.graphics.chart import new_axes, new_figure, plot_linear_classifier_network, plot_training_data
+from indrajala_ml.model.linear_classifier_network import LinearClassifierNetwork
+from indrajala_ml.train import random_alternating_training_data, train_linear_classifier_network
 
 
 class XORTarget:

@@ -1,5 +1,5 @@
-from perceptron.demos.capture_app import CaptureConfig, run_capture_demo
-from perceptron.digit_capture import (
+from indrajala_ml.demos.capture_app import CaptureConfig, run_capture_demo
+from indrajala_ml.digit_capture import (
     CAPTURE_BRUSH_RADIUS,
     CAPTURE_GRID_SIZE,
     GRID_SIZE,
@@ -7,7 +7,7 @@ from perceptron.digit_capture import (
     paint_brush_stroke,
     tile_grid_to_state,
 )
-from perceptron.model.multiclass_backprop_classifier_network import MultiClassBackpropClassifierNetwork
+from indrajala_ml.model.multiclass_backprop_classifier_network import MultiClassBackpropClassifierNetwork
 
 MODEL_PATH = "data/digits/trained_model.json"
 
@@ -17,7 +17,7 @@ MODEL_PATH = "data/digits/trained_model.json"
 # stroke stamped CAPTURE_BRUSH_RADIUS cells wide (see digit_capture.paint_brush_stroke), since a
 # single-cell-wide mouse line comes out far fainter after downsampling than any real training
 # stroke - which is then genuinely block-counted down to the GRID_SIZE x GRID_SIZE, 0-16-graded
-# shape the model was actually trained on. See perceptron/demos/capture_app.py for the shared
+# shape the model was actually trained on. See indrajala_ml/demos/capture_app.py for the shared
 # capture UI this config drives.
 CONFIG = CaptureConfig(
     capture_grid_size=CAPTURE_GRID_SIZE,

@@ -2,7 +2,7 @@ import importlib
 import sys
 import textwrap
 
-from perceptron.demos.registry import DEMOS
+from indrajala_ml.demos.registry import DEMOS
 
 DESCRIPTION_WRAP_WIDTH = 92
 
@@ -80,7 +80,7 @@ def main(argv: list[str] | None = None) -> None:
         _run_demo(_parse_direct_selection(argv[0]))
         return
 
-    print("perceptron demos")
+    print("indrajala-ml demos")
     print("select a demo to run; after it finishes you can run another or quit.")
 
     while True:

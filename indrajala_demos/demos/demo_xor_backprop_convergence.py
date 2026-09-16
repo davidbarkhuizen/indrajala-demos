@@ -4,15 +4,15 @@ matplotlib.use("TkAgg")
 
 from matplotlib import pyplot
 
-from perceptron.geometry import square_bounds
-from perceptron.graphics.chart import new_axes, new_figure, plot_classifier_probability_heatmap, plot_training_data
-from perceptron.model.backprop_classifier_network import BackpropClassifierNetwork
-from perceptron.train import random_alternating_training_data, train_linear_classifier_network
+from indrajala_ml.geometry import square_bounds
+from indrajala_ml.graphics.chart import new_axes, new_figure, plot_classifier_probability_heatmap, plot_training_data
+from indrajala_ml.model.backprop_classifier_network import BackpropClassifierNetwork
+from indrajala_ml.train import random_alternating_training_data, train_linear_classifier_network
 
 
 class XORTarget:
     # same target as demo_xor_linear_classifier_ceiling.py's XORTarget - kept as an independent
-    # copy here (not imported), matching the same perceptron/demos/ -> perceptron/demos/
+    # copy here (not imported), matching the same indrajala_ml/demos/ -> indrajala_ml/demos/
     # dependency avoidance demo_backprop_variant_comparison.py's own XORTarget copy already uses
     # (each demo script stays independently readable/runnable without tracing into another one)
     def __init__(self, bounds: list[tuple[float, float]]) -> None:

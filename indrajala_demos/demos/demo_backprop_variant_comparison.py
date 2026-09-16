@@ -7,19 +7,19 @@ matplotlib.use("TkAgg")
 
 from matplotlib import pyplot
 
-from perceptron.digits_data import load_digits_dataset, split_train_test
-from perceptron.geometry import square_bounds
-from perceptron.graphics.chart import new_axes, new_figure, plot_labeled_series
-from perceptron.model.backprop_classifier_network import BackpropClassifierNetwork
-from perceptron.model.binary_cross_entropy_backprop_classifier_network import (
+from indrajala_ml.digits_data import load_digits_dataset, split_train_test
+from indrajala_ml.geometry import square_bounds
+from indrajala_ml.graphics.chart import new_axes, new_figure, plot_labeled_series
+from indrajala_ml.model.backprop_classifier_network import BackpropClassifierNetwork
+from indrajala_ml.model.binary_cross_entropy_backprop_classifier_network import (
     BinaryCrossEntropyBackpropClassifierNetwork,
 )
-from perceptron.model.multiclass_backprop_classifier_network import MultiClassBackpropClassifierNetwork
-from perceptron.model.softmax_multiclass_backprop_classifier_network import (
+from indrajala_ml.model.multiclass_backprop_classifier_network import MultiClassBackpropClassifierNetwork
+from indrajala_ml.model.softmax_multiclass_backprop_classifier_network import (
     SoftmaxMultiClassBackpropClassifierNetwork,
 )
-from perceptron.multiclass_evaluate import accuracy as multiclass_accuracy
-from perceptron.train import random_alternating_training_data, train_linear_classifier_network
+from indrajala_ml.multiclass_evaluate import accuracy as multiclass_accuracy
+from indrajala_ml.train import random_alternating_training_data, train_linear_classifier_network
 
 DIGITS_DIMENSION = 64
 DIGITS_CLASS_COUNT = 10
@@ -34,7 +34,7 @@ XOR_EPOCHS = 100
 
 class XORTarget:
     # same target as demo_xor_linear_classifier_ceiling.py's XORTarget - kept as an independent
-    # copy here (not imported), matching the same tests/ -> perceptron/demos/ dependency
+    # copy here (not imported), matching the same tests/ -> indrajala_ml/demos/ dependency
     # avoidance test_backprop_training_pipeline.py's own XORTarget copy already uses
     def __init__(self, bounds: list[tuple[float, float]]) -> None:
         self.input_bounds = bounds

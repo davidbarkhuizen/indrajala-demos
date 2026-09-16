@@ -1,4 +1,4 @@
-from perceptron.capture_common import stamp_brush
+from indrajala_ml.capture_common import stamp_brush
 
 GRID_SIZE = 8
 
@@ -20,7 +20,7 @@ def tile_grid_to_state(grid: list[list[float]]) -> tuple[float, ...]:
     shape digits_data.load_digits_dataset produces (row 0 -> indices 0-7, row 1 -> 8-15, ...) -
     matching exactly how sklearn.datasets.load_digits().data flattens its own 8x8 images, since
     that's what data/digits/digits.csv was extracted from. Kept separate from the interactive
-    capture UI (perceptron/demos/demo_uci_digit_capture.py) because it's the one piece of that
+    capture UI (indrajala_ml/demos/demo_uci_digit_capture.py) because it's the one piece of that
     tool's logic that's actually a pure function, and so the one piece worth unit-testing the
     same way as everything else in this codebase - the tkinter mouse/canvas code itself isn't
     meaningfully testable without a real or virtual display.

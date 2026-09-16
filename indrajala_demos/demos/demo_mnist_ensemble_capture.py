@@ -1,12 +1,12 @@
-from perceptron.demos.capture_app import CaptureConfig, run_capture_demo
-from perceptron.mnist_capture import (
+from indrajala_ml.demos.capture_app import CaptureConfig, run_capture_demo
+from indrajala_ml.mnist_capture import (
     CANVAS_SIZE,
     CAPTURE_BRUSH_RADIUS,
     CAPTURE_GRID_SIZE,
     paint_brush_stroke,
     preprocess_capture,
 )
-from perceptron.model.ensemble_backprop_classifier_network import EnsembleBackpropClassifierNetwork
+from indrajala_ml.model.ensemble_backprop_classifier_network import EnsembleBackpropClassifierNetwork
 
 MODEL_PATH = "data/mnist/trained_model.json"
 
@@ -21,7 +21,7 @@ def _grid_to_state(grid: list[list[float]]) -> tuple[float, ...]:
 # mnist_capture.paint_brush_stroke - a single-cell-wide mouse line is far thinner than any real
 # digit stroke once cropped and scaled down), which is then genuinely cropped to its own bounding
 # box, aspect-preserving-anti-aliased-scaled to fit a 20px box, and center-of-mass-placed into a
-# 28x28 field. See perceptron/demos/capture_app.py for the shared capture UI this config drives.
+# 28x28 field. See indrajala_ml/demos/capture_app.py for the shared capture UI this config drives.
 CONFIG = CaptureConfig(
     capture_grid_size=CAPTURE_GRID_SIZE,
     capture_tile_size=8,

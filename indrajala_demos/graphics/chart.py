@@ -6,8 +6,8 @@ from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from matplotlib.legend import Legend
 
-from perceptron.geometry import reference_positive_region_polygon
-from perceptron.model.linear_classifier_network import LinearClassifierNetwork
+from indrajala_ml.geometry import reference_positive_region_polygon
+from indrajala_ml.model.linear_classifier_network import LinearClassifierNetwork
 
 
 def plot_linear_classifier_network(

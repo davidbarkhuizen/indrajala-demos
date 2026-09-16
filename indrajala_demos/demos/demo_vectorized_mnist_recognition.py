@@ -1,12 +1,12 @@
 import time
 
-from perceptron.mnist_data import load_mnist_dataset, load_mnist_dataset_as_array
-from perceptron.model.multiclass_backprop_classifier_network import MultiClassBackpropClassifierNetwork
-from perceptron.model.vectorized_multiclass_backprop_classifier_network import (
+from indrajala_ml.mnist_data import load_mnist_dataset, load_mnist_dataset_as_array
+from indrajala_ml.model.multiclass_backprop_classifier_network import MultiClassBackpropClassifierNetwork
+from indrajala_ml.model.vectorized_multiclass_backprop_classifier_network import (
     VectorizedMultiClassBackpropClassifierNetwork,
 )
-from perceptron.multiclass_evaluate import accuracy
-from perceptron.train import train_linear_classifier_network
+from indrajala_ml.multiclass_evaluate import accuracy
+from indrajala_ml.train import train_linear_classifier_network
 
 DIMENSION = 28 * 28
 CLASS_COUNT = 10

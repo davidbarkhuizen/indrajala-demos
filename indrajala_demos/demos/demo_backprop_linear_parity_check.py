@@ -4,18 +4,18 @@ matplotlib.use("TkAgg")
 
 from matplotlib import pyplot
 
-from perceptron.evaluate import agreement_label, class_balanced_disagreement_rate, compare_on_random_point
-from perceptron.geometry import square_bounds
-from perceptron.graphics.chart import (
+from indrajala_ml.evaluate import agreement_label, class_balanced_disagreement_rate, compare_on_random_point
+from indrajala_ml.geometry import square_bounds
+from indrajala_ml.graphics.chart import (
     new_axes,
     new_figure,
     plot_classifier_probability_heatmap,
     plot_linear_classifier_network,
     plot_training_data,
 )
-from perceptron.model.backprop_classifier_network import BackpropClassifierNetwork
-from perceptron.model.linear_classifier_network import LinearClassifierNetwork
-from perceptron.train import reachable_reference_and_training_data, train_linear_classifier_network
+from indrajala_ml.model.backprop_classifier_network import BackpropClassifierNetwork
+from indrajala_ml.model.linear_classifier_network import LinearClassifierNetwork
+from indrajala_ml.train import reachable_reference_and_training_data, train_linear_classifier_network
 
 
 def main() -> None:

@@ -3,7 +3,7 @@ import tkinter as tk
 from dataclasses import dataclass
 from typing import Callable, Protocol
 
-from perceptron.digit_capture import intensity_to_color, pixel_to_tile
+from indrajala_ml.digit_capture import intensity_to_color, pixel_to_tile
 
 OFF_COLOR = "#000000"
 ON_COLOR = "#ffffff"

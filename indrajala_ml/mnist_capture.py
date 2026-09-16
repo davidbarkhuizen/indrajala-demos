@@ -1,6 +1,6 @@
 import math
 
-from perceptron.capture_common import stamp_brush
+from indrajala_ml.capture_common import stamp_brush
 
 TARGET_MAX_DIMENSION = 20
 CANVAS_SIZE = 28

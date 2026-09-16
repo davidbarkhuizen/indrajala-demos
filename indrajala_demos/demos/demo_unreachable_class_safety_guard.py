@@ -1,6 +1,6 @@
-from perceptron.geometry import square_bounds
-from perceptron.model.linear_classifier_network import LinearClassifierNetwork
-from perceptron.train import random_alternating_training_data
+from indrajala_ml.geometry import square_bounds
+from indrajala_ml.model.linear_classifier_network import LinearClassifierNetwork
+from indrajala_ml.train import random_alternating_training_data
 
 
 def main() -> None:
