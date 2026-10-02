@@ -7,7 +7,6 @@ matplotlib.use("Agg")
 from matplotlib import pyplot
 from matplotlib.axes import Axes
 
-from indrajala_ml.evaluate import class_balanced_disagreement_rate
 from indrajala_ml.geometry import square_bounds
 from indrajala_ml.graphics.chart import (
     disagreement_axis_bounds,
@@ -17,11 +16,9 @@ from indrajala_ml.graphics.chart import (
     plot_training_data,
 )
 from indrajala_ml.model.networks.python.linear_classifier_network import LinearClassifierNetwork
-from indrajala_ml.train import (
-    random_alternating_training_data,
-    reachable_reference_and_training_data,
-    train_linear_classifier_network,
-)
+from indrajala_ml.training.evaluate import class_balanced_disagreement_rate
+from indrajala_ml.training.train import train_linear_classifier_network
+from indrajala_ml.training.training_data import random_alternating_training_data, reachable_reference_and_training_data
 
 
 def test_training_of_linear_classifier():
