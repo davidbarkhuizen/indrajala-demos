@@ -7,7 +7,7 @@ numpy and Rust backends side by side, and drawing your own digits for the networ
 The demos, the matplotlib plotting (`indrajala_demos/graphics/`) and the tkinter digit capture
 (`indrajala_demos/capture/`) lived in indrajala-ml until 2026-10 and moved here with their
 history, so the library needs neither matplotlib nor tkinter
-([indrajala-ml's demos-split workplan](https://github.com/davidbarkhuizen/indrajala-ml/blob/main/docs/demos-split-workplan.md)).
+([indrajala-ml's demos-split workplan](https://github.com/davidbarkhuizen/indrajala-ml/blob/9c50fe6/docs/demos-split-workplan.md)).
 Commit messages from before the move cite indrajala-ml's pull requests as
 `davidbarkhuizen/indrajala-ml#N`.
 
