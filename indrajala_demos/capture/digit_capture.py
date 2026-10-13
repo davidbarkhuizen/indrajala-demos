@@ -1,4 +1,4 @@
-from indrajala_ml.capture.capture_common import stamp_brush
+from indrajala_demos.capture.capture_common import stamp_brush
 
 GRID_SIZE = 8
 

@@ -1,6 +1,6 @@
 import pytest
 
-from indrajala_ml.capture.mnist_capture import (
+from indrajala_demos.capture.mnist_capture import (
     CANVAS_SIZE,
     CAPTURE_BRUSH_RADIUS,
     CAPTURE_GRID_SIZE,

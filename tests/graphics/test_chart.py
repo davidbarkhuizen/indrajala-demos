@@ -3,7 +3,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 
-from indrajala_ml.graphics.chart import disagreement_axis_bounds
+from indrajala_demos.graphics.chart import disagreement_axis_bounds
 
 
 def test_disagreement_axis_bounds():

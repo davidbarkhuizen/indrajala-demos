@@ -6,21 +6,21 @@ import matplotlib
 
 matplotlib.use("TkAgg")
 
-from matplotlib import pyplot
-
 from indrajala_ml.data.mnist_data import (
     convert_parquet_to_binary,
     load_mnist_dataset,
     load_mnist_labels,
     load_mnist_records_at_indices,
 )
-from indrajala_ml.graphics.chart import new_axes, new_figure, style_dark_legend
-from indrajala_ml.graphics.evaluation_plots import new_confusion_matrix_figure, sample_predictions_figure
 from indrajala_ml.model.networks.python.fan_in_aware_backprop_classifier_network import (
     FanInAwareBackpropClassifierNetwork,
 )
 from indrajala_ml.training.ensemble_train import train_ensemble_parallel_from_indices
 from indrajala_ml.training.multiclass_evaluate import confusion_matrix
+from matplotlib import pyplot
+
+from indrajala_demos.graphics.chart import new_axes, new_figure, style_dark_legend
+from indrajala_demos.graphics.evaluation_plots import new_confusion_matrix_figure, sample_predictions_figure
 
 DIMENSION = 28 * 28
 CLASS_COUNT = 10

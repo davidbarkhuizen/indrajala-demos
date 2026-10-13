@@ -2,7 +2,7 @@ import importlib
 import sys
 import textwrap
 
-from indrajala_ml.demos.registry import DEMOS
+from indrajala_demos.demos.registry import DEMOS
 
 DESCRIPTION_WRAP_WIDTH = 92
 

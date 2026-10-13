@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+option="${1:-}"
+
+venv_root=".venv"
+# The library, its crate (indrajala-ml/rust) and its datasets (indrajala-ml/data, which data/
+# links to) all come from the submodule.
+library_root="indrajala-ml"
+rust_crate_root="$library_root/rust"
+# tkinter, for the capture demos and the TkAgg windows.
+os_packages="python3-tk"
+
+# The tool pins are indrajala-ml's (its ./cli), so both repositories build and lint alike.
+library_pin () {
+
+    sed -n "s/^$1=\"\(.*\)\"$/\1/p" "$library_root/cli"
+}
+
+clean () {
+
+    rm -rf .pytest_cache
+    find indrajala_demos tests -name __pycache__ -type d -prune -exec rm -rf {} +
+}
+
+install_os_packages () {
+
+    echo "installing os packages ..."
+    sudo apt-get install -y $os_packages
+    echo "... installed os packages"
+}
+
+init_submodules () {
+
+    echo "initializing git submodules ..."
+    git submodule update --init --recursive
+    echo "... initialized git submodules"
+}
+
+create_venv () {
+
+    echo "creating virtual environment @ $venv_root ..."
+    python3 -m venv "$venv_root"
+    echo "... created virtual environment @ $venv_root"
+}
+
+activate_venv () {
+
+    source "$venv_root/bin/activate"
+    echo "$(python --version) venv @ $(which python)"
+}
+
+deactivate_venv () {
+
+    deactivate
+}
+
+install_python_modules () {
+
+    echo "installing python modules ..."
+    python -m pip install --upgrade pip
+    # indrajala-ml's lock from inside its checkout: its `-e .` is the library itself
+    (cd "$library_root" && python -m pip install -r requirements.txt)
+    python -m pip install -r requirements.txt
+    python -m pip install "maturin==$(library_pin maturin_version)" \
+        "ruff==$(library_pin ruff_version)" "pyright==$(library_pin pyright_version)"
+    echo "... installed python modules"
+}
+
+require_rustup () {
+
+    if ! command -v rustup >/dev/null 2>&1; then
+        echo "rustup not found: install it from https://rustup.rs ($rust_crate_root/rust-toolchain.toml pins the toolchain)" >&2
+        exit 1
+    fi
+}
+
+build_rust () {
+
+    require_rustup
+    echo "building $rust_crate_root ..."
+    (cd "$rust_crate_root" && maturin develop --release)
+    echo "... built $rust_crate_root"
+}
+
+install_rust_wheel () {
+
+    # $1: a wheel directory CI caches, keyed on the crate's commit (as indrajala-ml's CI does)
+    local wheel_dir="$1"
+    if ! ls "$wheel_dir"/*.whl >/dev/null 2>&1; then
+        require_rustup
+        echo "building $rust_crate_root wheel into $wheel_dir ..."
+        local wheel_out
+        wheel_out="$(realpath -m "$wheel_dir")"
+        (cd "$rust_crate_root" && maturin build --release --out "$wheel_out")
+    fi
+    echo "installing $rust_crate_root wheel from $wheel_dir ..."
+    python -m pip install --force-reinstall --no-deps "$wheel_dir"/*.whl
+    echo "... installed $rust_crate_root wheel"
+}
+
+fetch_data () {
+
+    echo "fetching datasets ..."
+    (cd "$library_root" && python scripts/fetch_datasets.py)
+    echo "... fetched datasets"
+}
+
+setup () {
+
+    # The flags are for CI, as indrajala-ml's: --no-os-packages (no apt), --rust-wheel-dir <dir>
+    # (a cached crate wheel instead of `maturin develop`), --no-data (the lint job).
+    local os_packages=true
+    local rust_wheel_dir=""
+    local data=true
+    while [ "$#" -gt 0 ]; do
+        case "$1" in
+            --no-os-packages) os_packages=false; shift ;;
+            --rust-wheel-dir) rust_wheel_dir="$2"; shift 2 ;;
+            --no-data) data=false; shift ;;
+            *) usage; exit 1 ;;
+        esac
+    done
+
+    if [ "$os_packages" = true ]; then
+        install_os_packages
+    fi
+    init_submodules
+    create_venv
+    activate_venv
+    install_python_modules
+    if [ -n "$rust_wheel_dir" ]; then
+        install_rust_wheel "$rust_wheel_dir"
+    else
+        build_rust
+    fi
+    if [ "$data" = true ]; then
+        fetch_data
+    fi
+    deactivate_venv
+}
+
+run_tests () {
+
+    activate_venv
+    if [ "$#" -eq 0 ]; then
+        set -- tests/
+    fi
+    python3 -m pytest --verbose "$@"
+    deactivate_venv
+}
+
+lint () {
+
+    activate_venv
+    ruff check .
+    ruff format --check .
+    pyright
+    deactivate_venv
+}
+
+demo () {
+
+    activate_venv
+    python3 -m indrajala_demos.demos.menu "$@"
+    deactivate_venv
+}
+
+usage () {
+    echo "usage: cli [ clean | setup [--no-os-packages] [--rust-wheel-dir <dir>] [--no-data] | build-rust | fetch-data | test [pytest-path ...] | lint | demo [demo-number] ]"
+}
+
+case "$option" in
+
+    clean)
+        clean
+    ;;
+
+    setup)
+        shift
+        setup "$@"
+    ;;
+
+    build-rust)
+        activate_venv
+        build_rust
+        deactivate_venv
+    ;;
+
+    fetch-data)
+        activate_venv
+        fetch_data
+        deactivate_venv
+    ;;
+
+    test)
+        shift
+        clean
+        run_tests "$@"
+    ;;
+
+    lint)
+        lint
+    ;;
+
+    demo)
+        shift
+        demo "$@"
+    ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+
+esac

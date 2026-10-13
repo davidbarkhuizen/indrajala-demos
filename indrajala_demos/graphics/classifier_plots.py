@@ -3,12 +3,11 @@
 # partially unknown; this module's own values are still checked where they're declared)
 from collections.abc import Callable, Sequence
 
-from matplotlib import lines
-from matplotlib.axes import Axes
-
 from indrajala_ml.geometry import reference_positive_region_polygon
 from indrajala_ml.model.networks.python.linear_classifier_network import LinearClassifierNetwork
 from indrajala_ml.model.protocols.classifier_protocols import StateClassifier
+from matplotlib import lines
+from matplotlib.axes import Axes
 
 
 def plot_linear_classifier_network(

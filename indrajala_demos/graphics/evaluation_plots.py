@@ -7,7 +7,7 @@ from collections.abc import Callable
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-from indrajala_ml.graphics.chart import new_axes, new_figure
+from indrajala_demos.graphics.chart import new_axes, new_figure
 
 
 def plot_confusion_matrix(axes: Axes, matrix: list[list[int]], class_labels: list[str] | None = None) -> None:
