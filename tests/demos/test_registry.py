@@ -1,4 +1,6 @@
-import importlib
+import ast
+import importlib.util
+from pathlib import Path
 
 from indrajala_demos.demos.registry import DEMOS
 
@@ -17,7 +19,12 @@ def test_the_measurement_tools_are_registered():
         assert module in modules, module
 
 
-def test_every_entry_imports_and_has_a_main():
+def test_every_entry_exists_and_defines_main():
 
+    # read, not imported: some demos select the TkAgg backend on import, which a headless
+    # machine (CI) can't load
     for info in DEMOS:
-        assert callable(importlib.import_module(info.module).main), info.module
+        spec = importlib.util.find_spec(info.module)
+        assert spec is not None and spec.origin is not None, info.module
+        tree = ast.parse(Path(spec.origin).read_text())
+        assert any(isinstance(node, ast.FunctionDef) and node.name == "main" for node in tree.body), info.module
