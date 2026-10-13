@@ -1,4 +1,8 @@
-from indrajala_ml.capture.digit_capture import (
+from indrajala_ml.model.networks.python.multiclass_backprop_classifier_network import (
+    MultiClassBackpropClassifierNetwork,
+)
+
+from indrajala_demos.capture.digit_capture import (
     CAPTURE_BRUSH_RADIUS,
     CAPTURE_GRID_SIZE,
     GRID_SIZE,
@@ -6,10 +10,7 @@ from indrajala_ml.capture.digit_capture import (
     paint_brush_stroke,
     tile_grid_to_state,
 )
-from indrajala_ml.demos.capture_app import CaptureConfig, run_capture_demo
-from indrajala_ml.model.networks.python.multiclass_backprop_classifier_network import (
-    MultiClassBackpropClassifierNetwork,
-)
+from indrajala_demos.demos.capture_app import CaptureConfig, run_capture_demo
 
 MODEL_PATH = "data/digits/trained_model.json"
 

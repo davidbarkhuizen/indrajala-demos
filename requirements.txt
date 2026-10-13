@@ -1,0 +1,16 @@
+#
+# Pinned lock file, generated from requirements.in - this repository's own dependencies beyond
+# indrajala-ml's (indrajala-ml/requirements.txt pins those, and ./cli setup installs both). Pins
+# the full closure to the versions the tests pass against. Regenerate deliberately (`uv pip
+# compile requirements.in --python-version 3.14 --no-annotate --no-header -o requirements.txt`,
+# remove what indrajala-ml/requirements.txt already pins, then restore this header).
+-e .
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.66.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+pillow==12.3.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+six==1.17.0

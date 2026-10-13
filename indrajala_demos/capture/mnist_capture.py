@@ -1,6 +1,6 @@
 import math
 
-from indrajala_ml.capture.capture_common import stamp_brush
+from indrajala_demos.capture.capture_common import stamp_brush
 
 TARGET_MAX_DIMENSION = 20
 CANVAS_SIZE = 28

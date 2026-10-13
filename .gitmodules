@@ -1,0 +1,3 @@
+[submodule "indrajala-ml"]
+	path = indrajala-ml
+	url = git@github.com:davidbarkhuizen/indrajala-ml.git

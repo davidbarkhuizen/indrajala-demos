@@ -1,6 +1,6 @@
 import pytest
 
-from indrajala_ml.capture.digit_capture import (
+from indrajala_demos.capture.digit_capture import (
     BLOCK_SIZE,
     CAPTURE_BRUSH_RADIUS,
     CAPTURE_GRID_SIZE,

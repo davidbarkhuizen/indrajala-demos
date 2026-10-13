@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "indrajala-demos"
+version = "0.1.0"
+description = "Runnable demos for indrajala-ml: classifier training, plots and digit capture."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.14"
+dependencies = [
+    "indrajala-ml",  # the indrajala-ml/ submodule, installed editable by ./cli setup (no PyPI before 1.0)
+    "matplotlib",
+]
+
+[tool.setuptools.packages.find]
+include = ["indrajala_demos*"]
+namespaces = true
+
+# ruff and pyright are pinned in indrajala-ml/cli, which ./cli reads, so both repositories lint
+# against the same rules.
+[tool.ruff]
+line-length = 120
+extend-exclude = ["indrajala-ml"]  # the library's own repo (submodule)
+
+[tool.ruff.lint.isort]
+known-first-party = ["indrajala_demos", "tests"]
+known-third-party = ["indrajala_ml", "indrajala_math_rust"]
+
+# Strict everywhere. extraPaths: indrajala-ml is an editable install (an import hook pyright
+# can't follow), so its checkout is on pyright's path directly.
+[tool.pyright]
+include = ["indrajala_demos", "tests"]
+exclude = ["indrajala-ml", "**/__pycache__"]
+typeCheckingMode = "strict"
+extraPaths = ["indrajala-ml"]
+executionEnvironments = [{ root = "tests", extraPaths = [".", "indrajala-ml"], reportPrivateUsage = false }]
